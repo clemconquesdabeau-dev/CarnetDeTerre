@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carnet de Terre · Excel pour maraîchers</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#F4F6F1;--tx:#14231B;--mu:#4A5A50;--card:#fff;--bd:#D5DCD3;--gr:#1F4D3A;--ongr:#fff;--ac:#F2C230;--onac:#14231B;--soft:#E6EEE6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#101813;--tx:#E8EFE9;--mu:#A9B9AE;--card:#18231C;--bd:#2D3C33;--gr:#7FC8A0;--ongr:#0E1A13;--soft:#1E2C24}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#101813;--tx:#E8EFE9;--mu:#A9B9AE;--card:#18231C;--bd:#2D3C33;--gr:#7FC8A0;--ongr:#0E1A13;--soft:#1E2C24}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.55 'DM Sans',system-ui,sans-serif}
+h1,h2,.brand{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;line-height:1.1;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:18px;padding-bottom:18px}
+.brand{font-size:22px;color:var(--gr)}
+.btn{display:inline-block;border:0;border-radius:8px;padding:13px 24px;font:700 16px 'DM Sans',sans-serif;cursor:pointer;background:var(--gr);color:var(--ongr);text-decoration:none}
+.btn.ac{background:var(--ac);color:var(--onac)}
+.btn.out{background:transparent;color:var(--gr);border:2px solid var(--gr)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.hero{padding:40px 0 48px}
+.hero h1{font-size:clamp(34px,6vw,56px);max-width:760px;margin-bottom:18px}
+.hero p{font-size:19px;color:var(--mu);max-width:600px;margin:0 0 26px}
+.tool{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:clamp(20px,4vw,36px);margin-bottom:56px}
+.tool h2{font-size:clamp(24px,4vw,32px);margin-bottom:6px}
+.prog{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mu);margin-bottom:10px}
+.opts{display:grid;gap:10px;margin:20px 0}
+.opt{text-align:left;padding:15px 18px;border-radius:10px;border:2px solid var(--bd);background:var(--bg);color:var(--tx);font:500 17px 'DM Sans',sans-serif;cursor:pointer}
+.opt:hover,.opt:focus-visible{border-color:var(--gr);outline:none}
+.link{background:none;border:0;color:var(--mu);font:500 15px 'DM Sans',sans-serif;cursor:pointer;text-decoration:underline;padding:6px 0}
+.rec{display:flex;gap:14px;align-items:flex-start;border:2px solid var(--bd);border-radius:12px;padding:16px;margin:12px 0;background:var(--bg)}
+.rec.on{border-color:var(--gr);background:var(--soft)}
+.rec input{width:22px;height:22px;margin-top:3px;accent-color:var(--gr);flex:none}
+.rec b{display:block}
+.rec span{color:var(--mu);font-size:15px}
+.why{font-size:15px;color:var(--gr);font-weight:700}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:1px solid var(--bd);margin-top:18px;padding-top:18px}
+.price{font:800 36px 'Bricolage Grotesque',sans-serif;color:var(--gr)}
+.old{color:var(--mu);text-decoration:line-through;margin-left:8px;font-size:18px}
+.note{font-size:14px;color:var(--mu)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+details{margin:14px 0}summary{cursor:pointer;font-weight:700;color:var(--gr)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:20px}
+.card b{color:var(--gr)}
+.card p{margin:6px 0 0;color:var(--mu);font-size:16px}
+section.s{padding:0 0 56px}
+section.s h2{font-size:clamp(26px,4vw,36px);margin-bottom:22px}
+footer{border-top:1px solid var(--bd);padding:26px 0 34px;font-size:14px;color:var(--mu)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="brand">Carnet de Terre</div><a class="btn" href="#outil">Trouver mon modèle</a></header>
+
+<div class="hero">
+<h1>Sachez enfin à quel prix vendre vos légumes.</h1>
+<p>Des tableaux Excel simples pour les maraîchers en vente directe : coût de revient, marge et revenu par heure de travail. Sans abonnement, sans logiciel à apprendre.</p>
+<a class="btn ac" href="#outil">Quel modèle me faut-il ?</a>
+</div>
+
+<div class="tool" id="outil" aria-live="polite"><div id="app"></div></div>
+
+<section class="s">
+<h2>5 modèles, une question chacun</h2>
+<div class="grid">
+<div class="card"><b>01 · Prix de revient d’un légume</b><p>À quel prix vendre chaque culture pour en vivre ? Avec fiche de prix à imprimer.</p></div>
+<div class="card"><b>02 · Prix de revient d’un panier</b><p>Combien coûte votre panier, et quelle marge vous laisse-t-il ?</p></div>
+<div class="card"><b>03 · Comparatif des circuits de vente</b><p>Marché, paniers, ferme, restaurants, grossiste : lequel rapporte le plus par heure ?</p></div>
+<div class="card"><b>04 · Seuil de rentabilité</b><p>Quel chiffre d’affaires pour couvrir vos charges et atteindre votre revenu visé ?</p></div>
+<div class="card"><b>05 · Rentabilité des cultures</b><p>Quelles cultures rapportent le plus par m² et par heure de travail ?</p></div>
+</div>
+</section>
+
+<section class="s">
+<h2>Ce qui nous distingue</h2>
+<div class="grid">
+<div><b>Le revenu par heure</b><p class="note" style="font-size:16px">Pas seulement une marge : ce que rapporte réellement chaque heure de travail.</p></div>
+<div><b>Un simulateur « et si… »</b><p class="note" style="font-size:16px">Et si je vends 10 % plus cher ? Et si mes coûts montent de 10 % ?</p></div>
+<div><b>Pas d’abonnement</b><p class="note" style="font-size:16px">Un fichier Excel qui reste chez vous. Pas de compte à créer.</p></div>
+</div>
+</section>
+
+<footer>
+Créé par Clément Conques--Dabeau, étudiant à l’école d’ingénieurs de Purpan, à Toulouse.<br>
+Modèles indicatifs : pour une décision importante, faites vérifier vos calculs par un conseiller de gestion ou votre comptable.
+</footer>
+</div>
+
+<script>
+var CONTACT = "votre-email@exemple.fr";
+var P1 = 12, N1 = 19, PP = 39, NP = 59;
+var M = {
+  1: ["01 · Prix de revient d’un légume", "Coût de revient au kg et prix de vente conseillé de chaque culture, avec fiche de prix à imprimer."],
+  2: ["02 · Prix de revient d’un panier", "Coût et marge de chaque panier, avec la remise offerte au client."],
+  3: ["03 · Comparatif des circuits de vente", "Marge par heure de vente sur chaque circuit."],
+  4: ["04 · Seuil de rentabilité", "Chiffre d’affaires minimum et celui qu’il faut pour atteindre votre revenu visé."],
+  5: ["05 · Rentabilité des cultures", "Marge par m² et par heure de travail, culture par culture."]
+};
+var WHY = {
+  1: "pour fixer vos prix à partir de vos vrais coûts",
+  2: "parce que vous vendez en paniers",
+  3: "pour comparer ce que rapporte chaque circuit de vente",
+  4: "pour savoir combien vendre afin d’en vivre",
+  5: "pour savoir quelles cultures rapportent le plus"
+};
+var Q = [
+  {k: "activite", t: "Quelle est votre activité ?", o: ["Légumes / maraîchage", "Élevage laitier ou fromage fermier", "Céréales / grandes cultures", "Autre activité"]},
+  {k: "circuit", t: "Où vendez-vous vos produits ?", o: ["Sur les marchés", "En paniers (AMAP, abonnements)", "À la ferme", "Plusieurs circuits à la fois", "À un grossiste ou une coopérative"]},
+  {k: "besoin", t: "Pourquoi cherchez-vous un outil ?", o: ["Je ne connais pas mes vrais coûts", "Je ne sais pas à quel prix vendre", "Je gagne trop peu pour mon travail", "Je veux investir ou me développer"]},
+  {k: "attente", t: "Qu’en attendez-vous ?", o: ["Fixer mes prix justes", "Savoir combien vendre pour en vivre", "Choisir mon meilleur circuit de vente", "Choisir mes cultures les plus rentables"]}
+];
+var step = 0, ans = {}, sel = {};
+var app = document.getElementById("app");
+
+function reco(a) {
+  var ids = [[1, 4, 3, 5][a.attente]];
+  function add(x) { if (ids.indexOf(x) < 0) ids.push(x); }
+  if (a.circuit === 1) add(2); else if (a.circuit === 3) add(3);
+  add([1, 1, 5, 4][a.besoin]);
+  return ids.slice(0, 3);
+}
+function mail(subject, body) {
+  window.location.href = "mailto:" + CONTACT + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+}
+function restart() { step = 0; ans = {}; sel = {}; render(); }
+function scrollTool() { document.getElementById("outil").scrollIntoView({block: "start"}); }
+
+function render() {
+  if (step < Q.length) return renderQ();
+  if (step === 99) return renderNo();
+  renderResult();
+}
+function renderQ() {
+  var q = Q[step], h = '<div class="prog">Question ' + (step + 1) + ' sur ' + Q.length + '</div><h2>' + q.t + '</h2><div class="opts">';
+  q.o.forEach(function (o, i) { h += '<button class="opt" data-i="' + i + '">' + o + '</button>'; });
+  h += '</div>' + (step > 0 ? '<button class="link" id="back">← Question précédente</button>' : '');
+  app.innerHTML = h;
+  Array.prototype.forEach.call(app.querySelectorAll(".opt"), function (b) {
+    b.onclick = function () {
+      ans[q.k] = +b.getAttribute("data-i");
+      if (q.k === "activite" && ans.activite !== 0) { step = 99; } else { step++; }
+      if (step === Q.length) { sel = {}; reco(ans).forEach(function (id) { sel[id] = true; }); }
+      render(); scrollTool();
+    };
+  });
+  var back = document.getElementById("back");
+  if (back) back.onclick = function () { step--; render(); };
+}
+function renderNo() {
+  var act = Q[0].o[ans.activite];
+  app.innerHTML = '<h2>Pas encore de modèle pour votre activité</h2>' +
+    '<p>Nos 5 premiers modèles sont faits pour le maraîchage en vente directe. Pour « ' + act.toLowerCase() + ' », nous préparons la suite selon les demandes.</p>' +
+    '<p>Dites-nous ce qu’il vous faudrait : le prochain modèle pourrait être le vôtre.</p>' +
+    '<div class="row"><button class="btn" id="tell">Dire ce dont j’ai besoin</button><button class="btn out" id="re">Recommencer</button></div>';
+  document.getElementById("tell").onclick = function () {
+    mail("Un modèle pour mon activité", "Bonjour,\n\nMon activité : " + act + ".\nVoici ce qui m’aiderait :\n");
+  };
+  document.getElementById("re").onclick = restart;
+}
+function totals() {
+  var n = Object.keys(sel).filter(function (k) { return sel[k]; }).length;
+  return {n: n, p: Math.min(n * P1, PP), o: Math.min(n * N1, NP)};
+}
+function recHtml(id) {
+  var on = !!sel[id];
+  return '<label class="rec' + (on ? ' on' : '') + '"><input type="checkbox" data-id="' + id + '"' + (on ? ' checked' : '') + '><div><b>' + M[id][0] + '</b><span>' + M[id][1] + '</span></div></label>';
+}
+function renderResult() {
+  var r = reco(ans), h = '<h2>Voici ce qu’il vous faut</h2><p class="note">D’après vos réponses :</p>';
+  r.forEach(function (id) { h += '<div class="why">Recommandé ' + WHY[id] + '</div>' + recHtml(id); });
+  var others = [1, 2, 3, 4, 5].filter(function (i) { return r.indexOf(i) < 0; });
+  if (others.length) {
+    h += '<details><summary>Ajouter un autre modèle</summary>';
+    others.forEach(function (id) { h += recHtml(id); });
+    h += '</details>';
+  }
+  h += '<div class="total"><div id="price"></div><div class="note" id="offer"></div></div>' +
+    '<h2 style="font-size:22px;margin-top:26px">Est-ce bien ce qu’il vous faut ?</h2>' +
+    '<div class="row"><button class="btn ac" id="yes">Oui, je commande</button><button class="btn out" id="no">Non, revoir mes réponses</button></div>' +
+    '<p class="note">Vous recevrez le fichier Excel par e-mail après paiement (virement ou lien sécurisé).</p>';
+  app.innerHTML = h;
+  Array.prototype.forEach.call(app.querySelectorAll("input[type=checkbox]"), function (c) {
+    c.onchange = function () {
+      sel[c.getAttribute("data-id")] = c.checked;
+      c.parentNode.className = "rec" + (c.checked ? " on" : "");
+      upd();
+    };
+  });
+  document.getElementById("yes").onclick = order;
+  document.getElementById("no").onclick = restart;
+  upd();
+}
+function upd() {
+  var t = totals();
+  document.getElementById("price").innerHTML = t.n ? t.p + ' €<span class="old">' + t.o + ' €</span>' : '0 €';
+  document.getElementById("offer").textContent = t.n ? 'Offre de lancement pour les 10 premiers clients. Les 5 modèles : 39 € au lieu de 59 €.' : 'Choisissez au moins un modèle.';
+  document.getElementById("yes").disabled = !t.n;
+}
+function order() {
+  var t = totals(), list = [];
+  [1, 2, 3, 4, 5].forEach(function (i) { if (sel[i]) list.push("- " + M[i][0]); });
+  var body = "Bonjour,\n\nJe souhaite commander :\n" + list.join("\n") + "\n\nTotal : " + t.p + " € (offre de lancement)\n\n" +
+    "Mon activité : " + Q[0].o[ans.activite] + "\nMes circuits de vente : " + Q[1].o[ans.circuit] + "\nMon besoin : " + Q[2].o[ans.besoin] + "\nMon attente : " + Q[3].o[ans.attente] + "\n";
+  mail("Commande Carnet de Terre", body);
+}
+render();
+</script>
+</body>
+</html>
