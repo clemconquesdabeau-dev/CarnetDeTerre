@@ -257,7 +257,7 @@ footer b{font:600 20px 'Zilla Slab',serif;display:block;margin-bottom:4px}
 </section>
 
 <section id="modeles" class="split">
-<div class="sechead"><span class="num">03</span><h2 class="t">Douze modèles, une question chacun</h2><p>Vous remplissez les cases jaunes, tout le reste se calcule. Chaque modèle a son simulateur.</p></div>
+<div class="sechead"><span class="num">03</span><h2 class="t">Quatorze modèles, une question chacun</h2><p>Vous remplissez les cases jaunes, tout le reste se calcule. Chaque modèle a son simulateur.</p></div>
 <ol class="models">
 <li class="grp">Maraîchage et légumes<i></i></li>
 <li class="row"><span class="n">01</span><div><h3>Prix de revient d’un légume</h3><p>À quel prix vendre chaque culture pour en vivre ? Avec fiche de prix à imprimer pour l’étal.</p></div></li>
@@ -274,8 +274,10 @@ footer b{font:600 20px 'Zilla Slab',serif;display:block;margin-bottom:4px}
 <li class="row"><span class="n">10</span><div><h3>Comparatif des cultures</h3><p>Blé, orge, colza, tournesol : quelle culture de votre assolement rapporte le plus ?</p></div></li>
 <li class="grp">Toute autre activité<i></i></li>
 <li class="row"><span class="n">11</span><div><h3>Coût de revient d’un produit</h3><p>Pour tout produit fabriqué ou transformé : confiture, conserve, bière, jus, savon…</p></div></li>
-<li class="grp">Supplément graphique<i></i></li>
+<li class="grp">Suppléments<i></i></li>
 <li class="row"><span class="n">12</span><div><h3>Tableau de bord : actuel et prévisionnel <span class="sup">Supplément</span></h3><p>Vos chiffres mois par mois en graphiques, et trois scénarios pour l’année à venir : prudent, tel quel, ambitieux. Marge et revenu par heure comparés.</p></div></li>
+<li class="row"><span class="n">13</span><div><h3>Répartition des charges entre vos ateliers <span class="sup">Supplément</span></h3><p>Votre comptabilité donne des totaux d’exploitation. Ce tableau les répartit atelier par atelier, avec quatre clés calculées sur vos propres surfaces, animaux, heures et matériel. Un contrôle vérifie que 100 % de chaque charge est bien affecté.</p></div></li>
+<li class="row"><span class="n">14</span><div><h3>Rotation et assolement sur cinq ans <span class="sup">Supplément</span></h3><p>Votre rotation calculée année par année et sole par sole, avec l’effet du précédent : l’azote qu’il laisse et son effet sur le rendement suivant. Les retours trop rapprochés sont chiffrés, et un comparatif vous dit ce que vaut votre rotation face à votre meilleure culture en continu.</p></div></li>
 </ol>
 </section>
 
@@ -328,8 +330,11 @@ footer b{font:600 20px 'Zilla Slab',serif;display:block;margin-bottom:4px}
 <div class="tarif"><div class="lbl">Un modèle</div><div class="big">12 €</div><div class="was">19 €</div></div>
 <div class="tarif best"><div class="lbl">Quatre modèles ou plus</div><div class="big">39 €</div><div class="was">59 €</div></div>
 <div class="tarif oc"><div class="lbl">Supplément tableau de bord</div><div class="big">29 €</div><div class="was">39 €</div></div>
+<div class="tarif oc"><div class="lbl">Supplément charges par atelier</div><div class="big">34 €</div><div class="was">49 €</div></div>
+<div class="tarif oc"><div class="lbl">Supplément rotation 5 ans</div><div class="big">39 €</div><div class="was">59 €</div></div>
+<div class="tarif best"><div class="lbl">Les quatorze modèles</div><div class="big">99 €</div><div class="was">149 €</div></div>
 </div>
-<p class="note">Le supplément graphique se prend seul ou en plus d’un autre modèle.<br>Votre tableau s’ouvre sur ordinateur, téléphone ou tablette avec les principaux tableurs, y compris gratuits.<br>Offre de lancement pour les 10 premiers clients. Une question ? <a href="mailto:carnetdeterre.services@gmail.com">carnetdeterre.services@gmail.com</a></p>
+<p class="note">Les suppléments se prennent seuls ou en plus d’un autre modèle. Les trois suppléments ensemble : 79 € au lieu de 119 €.<br>Votre tableau s’ouvre sur ordinateur, téléphone ou tablette avec les principaux tableurs, y compris gratuits.<br>Offre de lancement pour les 10 premiers clients. Une question ? <a href="mailto:carnetdeterre.services@gmail.com">carnetdeterre.services@gmail.com</a></p>
 </div>
 </section>
 
@@ -382,7 +387,9 @@ footer b{font:600 20px 'Zilla Slab',serif;display:block;margin-bottom:4px}
 
 <script>
 var CONTACT = "carnetdeterre.services@gmail.com";
-var P1 = 12, N1 = 19, PP = 39, NP = 59, PSUP = 29, NSUP = 39;
+var P1 = 12, N1 = 19, PP = 39, NP = 59;
+var SUP = {12: [29, 39], 13: [34, 49], 14: [39, 59]};
+var SUPCAP = [79, 119], ALLCAP = [99, 149];
 var M = {
   1: ["01 · Prix de revient d’un légume", "Coût de revient au kg et prix de vente conseillé de chaque culture, avec fiche de prix à imprimer."],
   2: ["02 · Prix de revient d’un panier", "Coût et marge de chaque panier, avec la remise offerte au client."],
@@ -395,7 +402,9 @@ var M = {
   9: ["09 · Coût de production d’une culture", "Marge nette à l’hectare, coût à la tonne et rendement d’équilibre."],
   10: ["10 · Comparatif des cultures", "Marge nette et marge par heure de chaque culture de votre assolement."],
   11: ["11 · Coût de revient d’un produit", "Coût de revient, marge et prix conseillé de tout produit fabriqué."],
-  12: ["12 · Tableau de bord : actuel et prévisionnel", "Vos chiffres en graphiques et trois scénarios pour l’année à venir. Supplément : 29 € au lieu de 39 €."]
+  12: ["12 · Tableau de bord : actuel et prévisionnel", "Vos chiffres en graphiques et trois scénarios pour l’année à venir. Supplément : 29 € au lieu de 39 €."],
+  13: ["13 · Répartition des charges entre vos ateliers", "Les totaux de votre comptabilité répartis atelier par atelier, par clés calculées. Supplément : 34 € au lieu de 49 €."],
+  14: ["14 · Rotation et assolement sur cinq ans", "Votre rotation année par année, effet du précédent compris, et ce qu’elle vaut vraiment. Supplément : 39 € au lieu de 59 €."]
 };
 var WHY = {
   1: "pour fixer vos prix à partir de vos vrais coûts",
@@ -409,14 +418,16 @@ var WHY = {
   9: "pour connaître votre marge à l’hectare",
   10: "pour comparer les cultures de votre assolement",
   11: "pour connaître le coût de revient de votre produit",
-  12: "pour suivre votre année en graphiques et préparer la suivante"
+  12: "pour suivre votre année en graphiques et préparer la suivante",
+  13: "parce que vos charges sont à répartir entre plusieurs ateliers",
+  14: "pour raisonner votre rotation et pas seulement l’année en cours"
 };
 var Q = [
   {k: "activite", t: "Quelle est votre activité ?", o: ["Légumes / maraîchage", "Élevage laitier ou fromage fermier", "Céréales / grandes cultures", "Autre activité"]},
   {k: "circuit", t: "Où vendez-vous vos produits ?", o: ["Sur les marchés", "En paniers (AMAP, abonnements)", "À la ferme", "Plusieurs circuits à la fois", "À un grossiste ou une coopérative"]},
   {k: "besoin", t: "Pourquoi cherchez-vous un outil ?", o: ["Je ne connais pas mes vrais coûts", "Je ne sais pas à quel prix vendre", "Je gagne trop peu pour mon travail", "Je veux investir ou me développer"]},
   {k: "attente", t: "Qu’en attendez-vous ?", o: ["Fixer mes prix justes", "Savoir combien vendre pour en vivre", "Choisir mon meilleur circuit de vente", "Choisir mes cultures les plus rentables"]},
-  {k: "suivi", t: "Voulez-vous aussi suivre votre année en graphiques ?", o: ["Oui, avec des projections pour l’année à venir", "Non, les calculs me suffisent"]}
+  {k: "suivi", t: "Voulez-vous aller plus loin qu’un seul calcul ?", o: ["Oui : suivre mon année en graphiques et la projeter", "Oui : répartir les charges de ma comptabilité entre mes ateliers", "Oui : raisonner ma rotation sur cinq ans", "Non, les calculs me suffisent"]}
 ];
 var step = 0, ans = {}, sel = {};
 var app = document.getElementById("app");
@@ -444,6 +455,8 @@ function reco(a) {
   }
   ids = ids.slice(0, 3);
   if (a.suivi === 0) ids.push(12);
+  else if (a.suivi === 1) ids.push(13);
+  else if (a.suivi === 2) ids.push(14);
   return ids;
 }
 function mail(subject, body) {
@@ -474,10 +487,13 @@ function renderQ() {
 }
 function totals() {
   var ids = Object.keys(sel).filter(function (k) { return sel[k]; });
-  var sup = ids.indexOf("12") >= 0 ? 1 : 0;
-  var base = ids.length - sup;
-  return {n: ids.length, p: Math.min(base * P1, PP) + sup * PSUP,
-          o: Math.min(base * N1, NP) + sup * NSUP};
+  var sups = ids.filter(function (k) { return SUP[k]; });
+  var base = ids.length - sups.length;
+  var pb = Math.min(base * P1, PP), ob = Math.min(base * N1, NP);
+  var ps = 0, os = 0;
+  sups.forEach(function (k) { ps += SUP[k][0]; os += SUP[k][1]; });
+  if (sups.length === 3) { ps = Math.min(ps, SUPCAP[0]); os = Math.min(os, SUPCAP[1]); }
+  return {n: ids.length, p: Math.min(pb + ps, ALLCAP[0]), o: Math.min(ob + os, ALLCAP[1])};
 }
 function recHtml(id) {
   var on = !!sel[id];
@@ -486,7 +502,7 @@ function recHtml(id) {
 function renderResult() {
   var r = reco(ans), h = '<div class="prog">Notre recommandation</div><h3>Voici ce qu’il vous faut</h3>';
   r.forEach(function (id) { h += '<div class="why">Recommandé ' + WHY[id] + '</div>' + recHtml(id); });
-  var others = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(function (i) { return r.indexOf(i) < 0; });
+  var others = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].filter(function (i) { return r.indexOf(i) < 0; });
   if (others.length) {
     h += '<details><summary>Ajouter un autre modèle</summary>';
     others.forEach(function (id) { h += recHtml(id); });
@@ -511,12 +527,12 @@ function renderResult() {
 function upd() {
   var t = totals();
   document.getElementById("price").innerHTML = t.n ? t.p + ' €<span class="old">' + t.o + ' €</span>' : '0 €';
-  document.getElementById("offer").textContent = t.n ? 'Offre de lancement pour les 10 premiers clients. À partir de 4 modèles : 39 € au lieu de 59 €, supplément graphique 29 €.' : 'Choisissez au moins un modèle.';
+  document.getElementById("offer").textContent = t.n ? 'Offre de lancement pour les 10 premiers clients. À partir de 4 modèles : 39 € au lieu de 59 €. Les trois suppléments ensemble : 79 €. Les quatorze modèles : 99 €.' : 'Choisissez au moins un modèle.';
   document.getElementById("yes").disabled = !t.n;
 }
 function order() {
   var t = totals(), list = [];
-  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach(function (i) { if (sel[i]) list.push("- " + M[i][0]); });
+  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].forEach(function (i) { if (sel[i]) list.push("- " + M[i][0]); });
   var body = "Bonjour,\n\nJe souhaite commander :\n" + list.join("\n") + "\n\nTotal : " + t.p + " € (offre de lancement)\n\n" +
     "Mon activité : " + Q[0].o[ans.activite] + "\nMes circuits de vente : " + Q[1].o[ans.circuit] + "\nMon besoin : " + Q[2].o[ans.besoin] + "\nMon attente : " + Q[3].o[ans.attente] + "\nSuivi graphique : " + Q[4].o[ans.suivi] + "\n";
   mail("Commande Carnet de Terre", body);
